@@ -1,0 +1,48 @@
+version: "2"
+services:
+  api:
+    build: .
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/platform-gourmet-rest-api
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+      - redis
+
+  # The Database
+  database:
+    image: mysql:5.7
+    volumes:
+      - dbdata:/var/lib/mysql
+    environment:
+      - "MYSQL_DATABASE=devacce"
+      - "MYSQL_USER=devacce"
+      - "MYSQL_PASSWORD=acce"
+      - "MYSQL_ROOT_PASSWORD=acce"
+    ports:
+        - "3306:3306"
+
+  # The postGres SQL
+  postgres:
+    image: "postgres:9.5-alpine"
+    container_name: postgres
+    ports:
+        - "5433:5432"
+    volumes:
+        - "./dev-files/sql/:/docker-entrypoint-initdb.d/"
+    environment:
+        POSTGRES_USER: devscouter
+        POSTGRES_PASSWORD: devscouters]y'l;o
+        POSTGRES_DB: scouterdev
+
+  # The Redis NoSQL
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+
+volumes:
+  dbdata:

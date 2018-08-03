@@ -4,13 +4,13 @@
     "connector": "memory"
   },
   "mysqlDs": {
-    "host": "206.189.41.223",
+    "host": "localhost",
     "port": 3306,
     "url": "",
-    "database": "starwars",
-    "password": "a1a268b393c9fbac62793fc0325b1d9f7f80de38a18dece8",
+    "database": "devacce",
+    "password": "acce",
     "name": "mysqlDs",
-    "user": "admin",
+    "user": "root",
     "connector": "mysql"
   }
 }
